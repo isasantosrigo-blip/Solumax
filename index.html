@@ -32,7 +32,7 @@
             overflow: hidden;
         }
 
-        /* Ecrã de Login / Seleção de Setor */
+        /* Ecrã de Seleção de Setor (Sem Senha) */
         #login-screen {
             position: fixed;
             top: 0;
@@ -70,7 +70,7 @@
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -81,7 +81,7 @@
             margin-bottom: 6px;
         }
 
-        .form-group select, .form-group input {
+        .form-group select {
             width: 100%;
             padding: 12px;
             background: rgba(255,255,255,0.05);
@@ -108,7 +108,6 @@
             font-size: 1rem;
             cursor: pointer;
             transition: opacity 0.2s;
-            margin-top: 10px;
         }
 
         .btn-entrar:hover {
@@ -375,7 +374,7 @@
             background: rgba(239, 68, 68, 0.2);
         }
 
-        /* Estilos específicos para o Calendário */
+        /* Estilos do Calendário */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -405,7 +404,7 @@
 </head>
 <body>
 
-    <!-- ECRÃ DE SELEÇÃO DE SETOR / LOGIN -->
+    <!-- ECRÃ DE SELEÇÃO DE SETOR (SEM SENHA) -->
     <div id="login-screen">
         <div class="login-card">
             <h2>Solumax Consultoria</h2>
@@ -423,12 +422,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="input-senha">Senha de Acesso</label>
-                <input type="password" id="input-senha" placeholder="Digite a senha da equipa">
-            </div>
-
-            <button class="btn-entrar" onclick="fazerLogin()">Entrar no Sistema</button>
+            <button class="btn-entrar" onclick="fazerLogin()">Aceder ao Painel</button>
         </div>
     </div>
 
@@ -469,7 +463,7 @@
 
         <!-- Conteúdo Principal -->
         <main>
-            <!-- ABA: VISÃO GERAL (SEMPRE DISPONÍVEL) -->
+            <!-- ABA: VISÃO GERAL -->
             <div id="tab-visao" class="tab-content active">
                 <header>
                     <h1>Dashboard Geral</h1>
@@ -625,16 +619,10 @@
         </main>
     </div>
 
-    <!-- Script de Controlo -->
+    <!-- Script de Controlo (Sem Senha) -->
     <script>
         function fazerLogin() {
             var setorEscolhido = document.getElementById('select-setor').value;
-            var senhaDigitada = document.getElementById('input-senha').value;
-
-            if (senhaDigitada !== "solumax2026" && senhaDigitada !== "") {
-                alert("Senha incorreta!");
-                return;
-            }
 
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard-app').style.display = 'flex';
@@ -648,7 +636,6 @@
         function fazerLogout() {
             document.getElementById('dashboard-app').style.display = 'none';
             document.getElementById('login-screen').style.display = 'flex';
-            document.getElementById('input-senha').value = '';
         }
 
         function configurarPermissoesSetor(setor) {
@@ -658,7 +645,6 @@
             var btnFaturamento = document.getElementById('btn-faturamento');
             var btnCalendario = document.getElementById('btn-calendario');
 
-            // Visão Geral e Calendário ficam sempre visíveis para todos
             btnVisao.style.display = 'flex';
             btnCalendario.style.display = 'flex';
 
@@ -685,7 +671,6 @@
                 abrirAba('calendario');
                 return;
             } else {
-                // Diretoria / Geral vê tudo
                 btnProjetos.style.display = 'flex';
                 btnMembros.style.display = 'flex';
                 btnFaturamento.style.display = 'flex';
