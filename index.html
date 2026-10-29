@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solumax Consultoria | Dashboard por Setor</title>
+    <title>Solumax Consultoria | Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -32,91 +32,9 @@
             overflow: hidden;
         }
 
-        /* Ecrã de Seleção de Setor (Sem Senha) */
-        #login-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-deep);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .login-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        .login-card h2 {
-            color: var(--accent-yellow);
-            margin-bottom: 8px;
-            font-size: 1.5rem;
-        }
-
-        .login-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .form-group select option {
-            background-color: var(--card-bg);
-            color: var(--text-primary);
-        }
-
-        .btn-entrar {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--accent-yellow);
-            color: var(--bg-deep);
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .btn-entrar:hover {
-            opacity: 0.9;
-        }
-
         /* Estrutura Principal do Dashboard */
         #dashboard-app {
-            display: none;
+            width: 100vw;
             height: 100vh;
             display: flex;
         }
@@ -359,21 +277,6 @@
             font-size: 0.9rem;
         }
 
-        .btn-sair {
-            margin-top: auto;
-            background: rgba(239, 68, 68, 0.1);
-            color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        .btn-sair:hover {
-            background: rgba(239, 68, 68, 0.2);
-        }
-
         /* Estilos do Calendário */
         .calendar-grid {
             display: grid;
@@ -404,30 +307,8 @@
 </head>
 <body>
 
-    <!-- ECRÃ DE SELEÇÃO DE SETOR (SEM SENHA) -->
-    <div id="login-screen">
-        <div class="login-card">
-            <h2>Solumax Consultoria</h2>
-            <p>Selecione o seu setor para aceder ao painel</p>
-            
-            <div class="form-group">
-                <label for="select-setor">Setor / Área</label>
-                <select id="select-setor">
-                    <option value="todos">Diretoria / Geral (Acesso Completo)</option>
-                    <option value="projetos">Setor de Projetos</option>
-                    <option value="comercial">Setor Comercial</option>
-                    <option value="faturamento">Financeiro / Faturamento</option>
-                    <option value="membros">Gestão de Membros</option>
-                    <option value="calendario">Calendário e Eventos</option>
-                </select>
-            </div>
-
-            <button class="btn-entrar" onclick="fazerLogin()">Aceder ao Painel</button>
-        </div>
-    </div>
-
     <!-- DASHBOARD PRINCIPAL -->
-    <div id="dashboard-app" style="display: none; width: 100vw; height: 100vh;">
+    <div id="dashboard-app">
         <!-- Menu Lateral -->
         <aside>
             <div class="logo-area">
@@ -436,8 +317,8 @@
             </div>
 
             <div class="user-badge">
-                <span>Setor Atual:</span>
-                <strong id="display-setor">Geral</strong>
+                <span>Perfil:</span>
+                <strong>Diretoria / Geral</strong>
             </div>
 
             <div class="menu-links" id="menu-container">
@@ -457,8 +338,6 @@
                     <i class="fa-solid fa-calendar-days"></i> Calendário
                 </button>
             </div>
-
-            <button class="btn-sair" onclick="fazerLogout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Trocar Setor</button>
         </aside>
 
         <!-- Conteúdo Principal -->
@@ -487,6 +366,13 @@
                         <span>Taxa de Conversão</span>
                         <div class="kpi-value">0,67</div>
                     </div>
+                </div>
+
+                <div class="card-box">
+                    <h3>Resumo Executivo da Solumax</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        Bem-vinda ao painel centralizado de gestão da Solumax Consultoria. Utilize o menu lateral para alternar entre a gestão detalhada de projetos, equipa de membros, relatórios de faturamento e o calendário corporativo com as reuniões e eventos oficiais.
+                    </p>
                 </div>
             </div>
 
@@ -546,9 +432,9 @@
 
                 <div class="setores-grid">
                     <div class="setor-card">
-                        <h3>Gerentes</h3>
+                        <h3>Gerência e Projetos</h3>
                         <ul>
-                            <li><i class="fa-solid fa-circle"></i> Ana Carolina Silva</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Ana Carolina Silva</li>
                             <li>
                                 <span style="display: inline-flex; align-items: center; gap: 8px;">
                                     <img src="isadora.jpg" alt="Isadora" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
@@ -572,6 +458,15 @@
                         <span>Faturamento Total</span>
                         <div class="kpi-value">R$ 74,83 Mil</div>
                     </div>
+                    <div class="kpi-card">
+                        <span>Ticket Médio</span>
+                        <div class="kpi-value">R$ 12,47 Mil</div>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <h3>Consolidado Financeiro</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Contratos ativos gerem o fluxo de caixa recorrente da empresa com alinhamento direto aos objetivos estratégicos do período.</p>
                 </div>
             </div>
 
@@ -619,66 +514,8 @@
         </main>
     </div>
 
-    <!-- Script de Controlo (Sem Senha) -->
+    <!-- Script de Navegação entre Abas -->
     <script>
-        function fazerLogin() {
-            var setorEscolhido = document.getElementById('select-setor').value;
-
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('dashboard-app').style.display = 'flex';
-
-            var nomeSetorTexto = document.getElementById('select-setor').options[document.getElementById('select-setor').selectedIndex].text;
-            document.getElementById('display-setor').innerText = nomeSetorTexto;
-
-            configurarPermissoesSetor(setorEscolhido);
-        }
-
-        function fazerLogout() {
-            document.getElementById('dashboard-app').style.display = 'none';
-            document.getElementById('login-screen').style.display = 'flex';
-        }
-
-        function configurarPermissoesSetor(setor) {
-            var btnVisao = document.getElementById('btn-visao');
-            var btnProjetos = document.getElementById('btn-projetos');
-            var btnMembros = document.getElementById('btn-membros');
-            var btnFaturamento = document.getElementById('btn-faturamento');
-            var btnCalendario = document.getElementById('btn-calendario');
-
-            btnVisao.style.display = 'flex';
-            btnCalendario.style.display = 'flex';
-
-            if (setor === 'projetos') {
-                btnProjetos.style.display = 'flex';
-                btnMembros.style.display = 'none';
-                btnFaturamento.style.display = 'none';
-            } else if (setor === 'comercial') {
-                btnProjetos.style.display = 'flex';
-                btnMembros.style.display = 'none';
-                btnFaturamento.style.display = 'none';
-            } else if (setor === 'faturamento') {
-                btnProjetos.style.display = 'none';
-                btnMembros.style.display = 'none';
-                btnFaturamento.style.display = 'flex';
-            } else if (setor === 'membros') {
-                btnProjetos.style.display = 'none';
-                btnMembros.style.display = 'flex';
-                btnFaturamento.style.display = 'none';
-            } else if (setor === 'calendario') {
-                btnProjetos.style.display = 'none';
-                btnMembros.style.display = 'none';
-                btnFaturamento.style.display = 'none';
-                abrirAba('calendario');
-                return;
-            } else {
-                btnProjetos.style.display = 'flex';
-                btnMembros.style.display = 'flex';
-                btnFaturamento.style.display = 'flex';
-            }
-
-            abrirAba('visao');
-        }
-
         function abrirAba(nomeAba) {
             var abas = document.querySelectorAll('.tab-content');
             abas.forEach(function(aba) {
