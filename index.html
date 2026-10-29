@@ -32,7 +32,6 @@
             overflow: hidden;
         }
 
-        /* Estrutura Principal do Dashboard */
         #dashboard-app {
             width: 100vw;
             height: 100vh;
@@ -277,7 +276,6 @@
             font-size: 0.9rem;
         }
 
-        /* Estilos do Calendário */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -307,9 +305,7 @@
 </head>
 <body>
 
-    <!-- DASHBOARD PRINCIPAL -->
     <div id="dashboard-app">
-        <!-- Menu Lateral -->
         <aside>
             <div class="logo-area">
                 <div class="logo-icon"><i class="fa-solid fa-gear"></i></div>
@@ -340,7 +336,6 @@
             </div>
         </aside>
 
-        <!-- Conteúdo Principal -->
         <main>
             <!-- ABA: VISÃO GERAL -->
             <div id="tab-visao" class="tab-content active">
@@ -403,7 +398,7 @@
                                 <td>Ambev</td>
                                 <td><span class="badge concluido">Concluído</span></td>
                                 <td>R$ 1.431,04</td>
-                                <td>Livia</td>
+                                <td>Livia Maraí Kinchski Marques</td>
                             </tr>
                             <tr>
                                 <td>P002</td>
@@ -411,7 +406,7 @@
                                 <td>Mars</td>
                                 <td><span class="badge concluido">Concluído</span></td>
                                 <td>R$ 31.782,12</td>
-                                <td>Ana Carolina</td>
+                                <td>Ana Carolina Silva</td>
                             </tr>
                             <tr>
                                 <td>P003</td>
@@ -419,7 +414,7 @@
                                 <td>Elecar</td>
                                 <td><span class="badge andamento">Em andamento</span></td>
                                 <td>R$ 18.500,00</td>
-                                <td>Pedro</td>
+                                <td>Pedro Israel Rondini</td>
                             </tr>
                             <tr>
                                 <td>P004</td>
@@ -427,7 +422,7 @@
                                 <td>Refribar</td>
                                 <td><span class="badge recusado">Recusado</span></td>
                                 <td>R$ 9.200,00</td>
-                                <td>Lucas</td>
+                                <td>Matheus Balam Alves</td>
                             </tr>
                             <tr>
                                 <td>P005</td>
@@ -438,7 +433,7 @@
                                 <td>
                                     <span style="display: inline-flex; align-items: center; gap: 8px;">
                                         <img src="isadora.jpg" alt="Isadora" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover;">
-                                        Isadora
+                                        Isadora dos Santos Rigo
                                     </span>
                                 </td>
                             </tr>
@@ -451,7 +446,7 @@
                                 <td>
                                     <span style="display: inline-flex; align-items: center; gap: 8px;">
                                         <img src="isadora.jpg" alt="Isadora" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover;">
-                                        Isadora
+                                        Isadora dos Santos Rigo
                                     </span>
                                 </td>
                             </tr>
@@ -460,7 +455,7 @@
                 </div>
             </div>
 
-            <!-- ABA: MEMBROS -->
+            <!-- ABA: MEMBROS (ATUALIZADA COM OS DADOS DA PLANILHA) -->
             <div id="tab-membros" class="tab-content">
                 <header>
                     <h1>Membros por Setor</h1>
@@ -469,29 +464,94 @@
 
                 <div class="setores-grid">
                     <div class="setor-card">
-                        <h3>Diretoria & Gestão</h3>
+                        <h3>Gerentes</h3>
                         <ul>
-                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Ana Carolina Silva (Diretora)</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Ana Carolina Silva</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Damelly Vitória Barreto Pereira</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Eduarda Schumtzler</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Gabriel Vetrone Jorge</li>
                             <li>
                                 <span style="display: inline-flex; align-items: center; gap: 8px;">
                                     <img src="isadora.jpg" alt="Isadora" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
-                                    Isadora dos Santos Rigo (Project Manager)
+                                    Isadora dos Santos Rigo
                                 </span>
                             </li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Livia Maraí Kinchski Marques</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> João Henrique Moura Alves</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Matheus Balam Alves</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Matheus Vicente Brito Maia</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Pedro Israel Rondini</li>
                         </ul>
                     </div>
+
                     <div class="setor-card">
-                        <h3>Equipe Comercial</h3>
+                        <h3>Comercial</h3>
                         <ul>
-                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Pedro Rondini</li>
-                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Beatriz Souza</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Douglas Harvey</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Ariany Vitória Rodrigues</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Matheus Vicente Brito Maia</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Rafaela Kupper</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Maria Eduarda Oliveira da Luz</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Murilo Bretzel</li>
                         </ul>
                     </div>
+
                     <div class="setor-card">
-                        <h3>Equipe de Projetos</h3>
+                        <h3>Projetos</h3>
                         <ul>
-                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Lucas Gabriel</li>
-                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Mariana Lima</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Damelly Vitória Barreto Pereira</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Eduarda Schumtzler</li>
+                            <li>
+                                <span style="display: inline-flex; align-items: center; gap: 8px;">
+                                    <img src="isadora.jpg" alt="Isadora" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
+                                    Isadora dos Santos Rigo
+                                </span>
+                            </li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> João Vitor</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Livia Maraí Kinchski Marques</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> João Henrique Moura Alves</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Matheus Balam Alves</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Luiz Fernando Bruschetta</li>
+                        </ul>
+                    </div>
+
+                    <div class="setor-card">
+                        <h3>Administrativo</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Ana Carolina Silva</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Gabriela Infante Herminio</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Gabriel Vetrone Jorge</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Heloisa Marcondes</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Heloisa Antonyelle Oliveira</li>
+                        </ul>
+                    </div>
+
+                    <div class="setor-card">
+                        <h3>Marketing</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Ana Clara Pierucci</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Rodrigo Padilha Montanheiro</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Caroline Moreira Pires</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Brayan Gazetta</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Poliana Santos</li>
+                        </ul>
+                    </div>
+
+                    <div class="setor-card">
+                        <h3>GP</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Valquiria Klaumann Bescorovaine</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Jhonatan Kauan Santiago</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Kauã Camargo</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Poliana Santos</li>
+                        </ul>
+                    </div>
+
+                    <div class="setor-card">
+                        <h3>Presidência</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Heloisa Antonyelle Oliveira</li>
+                            <li><i class="fa-solid fa-circle" style="font-size: 8px; color: var(--accent-yellow);"></i> Raul Calegare Hernandes</li>
                         </ul>
                     </div>
                 </div>
@@ -565,7 +625,6 @@
         </main>
     </div>
 
-    <!-- Script de Navegação entre Abas -->
     <script>
         function abrirAba(nomeAba) {
             var abas = document.querySelectorAll('.tab-content');
