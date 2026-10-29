@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solumax Consultoria | Dashboard</title>
-    <!-- Importando a fonte Inter e ícones do FontAwesome -->
+    <title>Solumax Consultoria | Dashboard por Setor</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-deep: #02084b;       /* Azul escuro da IDV */
-            --card-bg: #0d1b52;       /* Tom corporativo para os cards */
-            --text-primary: #ffffff;  /* Branco */
-            --text-secondary: #93c5fd;/* Azul claro suave para textos secundários */
-            --accent-blue: #0d4e94;   /* Azul corporativo da IDV */
-            --accent-yellow: #fab328; /* Amarelo da IDV */
-            --border-color: #1e3a8a;  /* Borda sutil */
+            --bg-deep: #02084b;
+            --card-bg: #0d1b52;
+            --text-primary: #ffffff;
+            --text-secondary: #93c5fd;
+            --accent-blue: #0d4e94;
+            --accent-yellow: #fab328;
+            --border-color: #1e3a8a;
         }
 
         * {
@@ -29,12 +28,100 @@
         body {
             background-color: var(--bg-deep);
             color: var(--text-primary);
-            display: flex;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* Sidebar / Menu Lateral */
+        /* Ecrã de Login / Seleção de Setor */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            color: var(--accent-yellow);
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+        }
+
+        .login-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .form-group select option {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        .btn-entrar {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-yellow);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-entrar:hover {
+            opacity: 0.9;
+        }
+
+        /* Estrutura Principal do Dashboard */
+        #dashboard-app {
+            display: none;
+            height: 100vh;
+            display: flex;
+        }
+
         aside {
             width: 260px;
             background-color: var(--card-bg);
@@ -49,7 +136,7 @@
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -66,6 +153,25 @@
             border-radius: 8px;
             font-size: 1.1rem;
             font-weight: bold;
+        }
+
+        .user-badge {
+            background: rgba(250, 179, 40, 0.1);
+            border: 1px solid var(--accent-yellow);
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 0.85rem;
+        }
+
+        .user-badge span {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .user-badge strong {
+            color: var(--accent-yellow);
         }
 
         .menu-links {
@@ -102,14 +208,12 @@
             color: var(--text-primary);
         }
 
-        /* Conteúdo Principal */
         main {
             flex: 1;
             overflow-y: auto;
             padding: 32px;
         }
 
-        /* Seções (Abas) */
         .tab-content {
             display: none;
         }
@@ -118,7 +222,6 @@
             display: block;
         }
 
-        /* Cards de Indicadores (KPIs) */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -133,7 +236,6 @@
             border-radius: 12px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         }
 
         .kpi-card::before {
@@ -151,7 +253,6 @@
             font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .kpi-value {
@@ -159,19 +260,6 @@
             font-weight: 700;
             margin-top: 12px;
             color: var(--text-primary);
-        }
-
-        /* Grades e Tabelas */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-        }
-
-        @media(max-width: 1024px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .card-box {
@@ -217,49 +305,11 @@
             font-weight: 600;
         }
 
-        .badge.concluido {
-            background-color: rgba(16, 185, 129, 0.2);
-            color: #34d399;
-        }
+        .badge.concluido { background-color: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .badge.andamento { background-color: rgba(250, 179, 40, 0.2); color: var(--accent-yellow); }
+        .badge.esperando { background-color: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+        .badge.recusado { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
 
-        .badge.andamento {
-            background-color: rgba(250, 179, 40, 0.2);
-            color: var(--accent-yellow);
-        }
-
-        .badge.esperando {
-            background-color: rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
-        }
-
-        .badge.recusado {
-            background-color: rgba(239, 68, 68, 0.2);
-            color: #f87171;
-        }
-
-        .funil-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .funil-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            font-size: 0.9rem;
-        }
-
-        .funil-item strong {
-            color: var(--accent-yellow);
-        }
-
-        /* Estilo para a aba de Membros por Setor */
         .setores-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -296,11 +346,6 @@
             gap: 8px;
         }
 
-        .setor-card li i {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-        }
-
         header {
             margin-bottom: 28px;
         }
@@ -314,441 +359,357 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+
+        .btn-sair {
+            margin-top: auto;
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-sair:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Estilos específicos para o Calendário */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+        }
+        .event-date {
+            background-color: var(--accent-yellow);
+            color: var(--bg-deep);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-align: center;
+            min-width: 55px;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Menu Lateral com Botões Nativos -->
-    <aside>
-        <div class="logo-area">
-            <div class="logo-icon"><i class="fa-solid fa-gear"></i></div>
-            Solumax Consultoria
+    <!-- ECRÃ DE SELEÇÃO DE SETOR / LOGIN -->
+    <div id="login-screen">
+        <div class="login-card">
+            <h2>Solumax Consultoria</h2>
+            <p>Selecione o seu setor para aceder ao painel</p>
+            
+            <div class="form-group">
+                <label for="select-setor">Setor / Área</label>
+                <select id="select-setor">
+                    <option value="todos">Diretoria / Geral (Acesso Completo)</option>
+                    <option value="projetos">Setor de Projetos</option>
+                    <option value="comercial">Setor Comercial</option>
+                    <option value="faturamento">Financeiro / Faturamento</option>
+                    <option value="membros">Gestão de Membros</option>
+                    <option value="calendario">Calendário e Eventos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="input-senha">Senha de Acesso</label>
+                <input type="password" id="input-senha" placeholder="Digite a senha da equipa">
+            </div>
+
+            <button class="btn-entrar" onclick="fazerLogin()">Entrar no Sistema</button>
         </div>
-        <div class="menu-links">
-            <button class="menu-btn active" id="btn-visao" onclick="abrirAba('visao')">
-                <i class="fa-solid fa-house"></i> Visão Geral
-            </button>
-            <button class="menu-btn" id="btn-projetos" onclick="abrirAba('projetos')">
-                <i class="fa-solid fa-folder-open"></i> Projetos
-            </button>
-            <button class="menu-btn" id="btn-membros" onclick="abrirAba('membros')">
-                <i class="fa-solid fa-users"></i> Membros
-            </button>
-            <button class="menu-btn" id="btn-faturamento" onclick="abrirAba('faturamento')">
-                <i class="fa-solid fa-wallet"></i> Faturamento
-            </button>
-        </div>
-    </aside>
+    </div>
 
-    <!-- Conteúdo Principal -->
-    <main>
-        <!-- ABA: VISÃO GERAL -->
-        <div id="tab-visao" class="tab-content active">
-            <header>
-                <h1>Dashboard Geral</h1>
-                <p>Acompanhamento de Indicadores e Funil de Projetos</p>
-            </header>
+    <!-- DASHBOARD PRINCIPAL -->
+    <div id="dashboard-app" style="display: none; width: 100vw; height: 100vh;">
+        <!-- Menu Lateral -->
+        <aside>
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fa-solid fa-gear"></i></div>
+                Solumax Consultoria
+            </div>
 
-            <!-- KPIs / Métricas Principais -->
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <span>Faturamento</span>
-                    <div class="kpi-value">R$ 74,83 Mil</div>
-                </div>
+            <div class="user-badge">
+                <span>Setor Atual:</span>
+                <strong id="display-setor">Geral</strong>
+            </div>
 
-                <div class="kpi-card">
-                    <span>CSAT</span>
-                    <div class="kpi-value">4,60</div>
-                </div>
+            <div class="menu-links" id="menu-container">
+                <button class="menu-btn active" id="btn-visao" onclick="abrirAba('visao')">
+                    <i class="fa-solid fa-house"></i> Visão Geral
+                </button>
+                <button class="menu-btn" id="btn-projetos" onclick="abrirAba('projetos')">
+                    <i class="fa-solid fa-folder-open"></i> Projetos
+                </button>
+                <button class="menu-btn" id="btn-membros" onclick="abrirAba('membros')">
+                    <i class="fa-solid fa-users"></i> Membros
+                </button>
+                <button class="menu-btn" id="btn-faturamento" onclick="abrirAba('faturamento')">
+                    <i class="fa-solid fa-wallet"></i> Faturamento
+                </button>
+                <button class="menu-btn" id="btn-calendario" onclick="abrirAba('calendario')">
+                    <i class="fa-solid fa-calendar-days"></i> Calendário
+                </button>
+            </div>
 
-                <div class="kpi-card">
-                    <span>Ticket Médio</span>
-                    <div class="kpi-value">R$ 12,47 Mil</div>
-                </div>
+            <button class="btn-sair" onclick="fazerLogout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Trocar Setor</button>
+        </aside>
 
-                <div class="kpi-card">
-                    <span>Taxa de Conversão</span>
-                    <div class="kpi-value">0,67</div>
+        <!-- Conteúdo Principal -->
+        <main>
+            <!-- ABA: VISÃO GERAL (SEMPRE DISPONÍVEL) -->
+            <div id="tab-visao" class="tab-content active">
+                <header>
+                    <h1>Dashboard Geral</h1>
+                    <p>Acompanhamento de Indicadores e Funil de Projetos</p>
+                </header>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span>Faturamento</span>
+                        <div class="kpi-value">R$ 74,83 Mil</div>
+                    </div>
+                    <div class="kpi-card">
+                        <span>CSAT</span>
+                        <div class="kpi-value">4,60</div>
+                    </div>
+                    <div class="kpi-card">
+                        <span>Ticket Médio</span>
+                        <div class="kpi-value">R$ 12,47 Mil</div>
+                    </div>
+                    <div class="kpi-card">
+                        <span>Taxa de Conversão</span>
+                        <div class="kpi-value">0,67</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tabelas e Status por Projeto -->
-            <div class="content-grid">
+            <!-- ABA: PROJETOS -->
+            <div id="tab-projetos" class="tab-content">
+                <header>
+                    <h1>Gestão de Projetos</h1>
+                    <p>Lista completa de contratos e status operacionais</p>
+                </header>
+                
                 <div class="card-box">
-                    <h3>Detalhamento dos Projetos</h3>
+                    <h3>Portfólio de Projetos</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Nome do Projeto</th>
+                                <th>ID</th>
+                                <th>Projeto</th>
                                 <th>Cliente</th>
-                                <th>Gerente</th>
                                 <th>Status</th>
+                                <th>Valor Total</th>
+                                <th>Gerente</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td>P001</td>
                                 <td>Ambev Testes</td>
                                 <td>Ambev</td>
+                                <td><span class="badge concluido">Concluído</span></td>
+                                <td>R$ 1.431,04</td>
                                 <td>Livia</td>
-                                <td><span class="badge concluido">Concluído</span></td>
                             </tr>
                             <tr>
-                                <td>Mapeamento Ambev</td>
-                                <td>Ambev</td>
-                                <td>Livia</td>
-                                <td><span class="badge concluido">Concluído</span></td>
-                            </tr>
-                            <tr>
-                                <td>Provas Ambev</td>
-                                <td>Ambev</td>
-                                <td>Livia</td>
-                                <td><span class="badge concluido">Concluído</span></td>
-                            </tr>
-                            <tr>
-                                <td>Prado marcenaria</td>
-                                <td>Prado marcenaria</td>
-                                <td>Gabriel Vetrone</td>
-                                <td><span class="badge concluido">Concluído</span></td>
-                            </tr>
-                            <tr>
-                                <td>Mars 1.0</td>
-                                <td>Mars</td>
-                                <td>João Moura</td>
-                                <td><span class="badge concluido">Concluído</span></td>
-                            </tr>
-                            <tr>
-                                <td>Mars 2.0</td>
-                                <td>Mars</td>
-                                <td>João Moura</td>
-                                <td><span class="badge andamento">Em andamento</span></td>
+                                <td>P006</td>
+                                <td>Bartmayer 2.0</td>
+                                <td>Bartmayer</td>
+                                <td><span class="badge esperando">Esperando resposta</span></td>
+                                <td>R$ 12.000,00</td>
+                                <td>
+                                    <span style="display: inline-flex; align-items: center; gap: 8px;">
+                                        <img src="isadora.jpg" alt="Isadora" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover;">
+                                        Isadora
+                                    </span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
 
-                <div class="card-box">
-                    <h3>Status por Projeto (Funil)</h3>
-                    <div class="funil-list">
-                        <div class="funil-item">
-                            <span>Concluído</span>
-                            <strong>5</strong>
+            <!-- ABA: MEMBROS -->
+            <div id="tab-membros" class="tab-content">
+                <header>
+                    <h1>Membros por Setor</h1>
+                    <p>Equipe oficial da Solumax Consultoria</p>
+                </header>
+
+                <div class="setores-grid">
+                    <div class="setor-card">
+                        <h3>Gerentes</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-circle"></i> Ana Carolina Silva</li>
+                            <li>
+                                <span style="display: inline-flex; align-items: center; gap: 8px;">
+                                    <img src="isadora.jpg" alt="Isadora" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
+                                    Isadora dos Santos Rigo
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA: FATURAMENTO -->
+            <div id="tab-faturamento" class="tab-content">
+                <header>
+                    <h1>Relatório de Faturamento</h1>
+                    <p>Indicadores financeiros, metas e receita consolidada</p>
+                </header>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span>Faturamento Total</span>
+                        <div class="kpi-value">R$ 74,83 Mil</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA: CALENDÁRIO E EVENTOS -->
+            <div id="tab-calendario" class="tab-content">
+                <header>
+                    <h1>Calendário e Eventos</h1>
+                    <p>Agenda oficial, reuniões recorrentes e marcos importantes</p>
+                </header>
+
+                <div class="calendar-grid">
+                    <div class="card-box">
+                        <h3>Próximos Eventos & Marcos</h3>
+                        
+                        <div class="event-item">
+                            <div class="event-date">07/11</div>
+                            <div>
+                                <strong style="color: var(--accent-yellow);">Eleição Solumax</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Processo eleitoral e votação da nova diretoria.</p>
+                            </div>
                         </div>
-                        <div class="funil-item">
-                            <span>Esperando resposta</span>
-                            <strong>2</strong>
+
+                        <div class="event-item">
+                            <div class="event-date">12/12</div>
+                            <div>
+                                <strong style="color: var(--accent-yellow);">Festa de Confraternização</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Celebração de encerramento de ano da equipa.</p>
+                            </div>
                         </div>
-                        <div class="funil-item">
-                            <span>Em andamento</span>
-                            <strong>1</strong>
-                        </div>
-                        <div class="funil-item">
-                            <span>Recusado</span>
-                            <strong>1</strong>
+                    </div>
+
+                    <div class="card-box">
+                        <h3>Rotina e Reuniões</h3>
+                        
+                        <div class="event-item">
+                            <div class="event-date" style="background-color: var(--accent-blue); color: white;">Segundas</div>
+                            <div>
+                                <strong style="color: var(--accent-yellow);">Reunião de Pulso</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Alinhamento semanal de metas, andamento de projetos e status da equipa.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+    </div>
 
-        <!-- ABA: PROJETOS -->
-        <div id="tab-projetos" class="tab-content">
-            <header>
-                <h1>Gestão de Projetos</h1>
-                <p>Lista completa de contratos e status operacionais</p>
-            </header>
-            
-            <div class="card-box">
-                <h3>Portfólio de Projetos</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Projeto</th>
-                            <th>Cliente</th>
-                            <th>Status</th>
-                            <th>Valor Total</th>
-                            <th>Gerente</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>P001</td>
-                            <td>Ambev Testes</td>
-                            <td>Ambev</td>
-                            <td><span class="badge concluido">Concluído</span></td>
-                            <td>R$ 1.431,04</td>
-                            <td>Livia</td>
-                        </tr>
-                        <tr>
-                            <td>P002</td>
-                            <td>Mapeamento Ambev</td>
-                            <td>Ambev</td>
-                            <td><span class="badge concluido">Concluído</span></td>
-                            <td>R$ 17.920,00</td>
-                            <td>Livia</td>
-                        </tr>
-                        <tr>
-                            <td>P003</td>
-                            <td>Provas Ambev</td>
-                            <td>Ambev</td>
-                            <td><span class="badge concluido">Concluído</span></td>
-                            <td>R$ 17.475,34</td>
-                            <td>Livia</td>
-                        </tr>
-                        <tr>
-                            <td>P004</td>
-                            <td>Prado marcenaria</td>
-                            <td>Prado marcenaria</td>
-                            <td><span class="badge concluido">Concluído</span></td>
-                            <td>R$ 6.174,00</td>
-                            <td>Gabriel Vetrone</td>
-                        </tr>
-                        <tr>
-                            <td>P005</td>
-                            <td>Mars 1.0</td>
-                            <td>Mars</td>
-                            <td><span class="badge concluido">Concluído</span></td>
-                            <td>R$ 17.000,00</td>
-                            <td>João Moura</td>
-                        </tr>
-                        <tr>
-                            <td>P006</td>
-                            <td>Bartmayer 2.0</td>
-                            <td>Bartmayer</td>
-                            <td><span class="badge esperando">Esperando resposta</span></td>
-                            <td>R$ 12.000,00</td>
-                            <td>
-                                <span style="display: inline-flex; align-items: center; gap: 8px;">
-                                    <img src="isadora.jpg" alt="Isadora" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover;">
-                                    Isadora
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>P007</td>
-                            <td>Planejamento Estratégico</td>
-                            <td>Elecar</td>
-                            <td><span class="badge recusado">Recusado</span></td>
-                            <td>R$ 4.580,00</td>
-                            <td>Matheus Balam</td>
-                        </tr>
-                        <tr>
-                            <td>P008</td>
-                            <td>Mars 2.0</td>
-                            <td>Mars</td>
-                            <td><span class="badge andamento">Em andamento</span></td>
-                            <td>R$ 14.829,00</td>
-                            <td>João Moura</td>
-                        </tr>
-                        <tr>
-                            <td>P009</td>
-                            <td>Refribar</td>
-                            <td>Refribar</td>
-                            <td><span class="badge esperando">Esperando resposta</span></td>
-                            <td>R$ 12.000,00</td>
-                            <td>Damelly</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- ABA: MEMBROS -->
-        <div id="tab-membros" class="tab-content">
-            <header>
-                <h1>Membros por Setor</h1>
-                <p>Equipe oficial da Solumax Consultoria</p>
-            </header>
-
-            <div class="setores-grid">
-                <!-- Gerentes -->
-                <div class="setor-card">
-                    <h3>Gerentes</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Ana Carolina Silva</li>
-                        <li><i class="fa-solid fa-circle"></i> Damelly Vitória Barreto Pereira</li>
-                        <li><i class="fa-solid fa-circle"></i> Eduarda Schumtzler</li>
-                        <li><i class="fa-solid fa-circle"></i> Gabriel Vetrone Jorge</li>
-                        <li>
-                            <span style="display: inline-flex; align-items: center; gap: 8px;">
-                                <img src="isadora.jpg" alt="Isadora" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
-                                Isadora dos Santos Rigo
-                            </span>
-                        </li>
-                        <li><i class="fa-solid fa-circle"></i> Livia Maraí Kinchski Marques</li>
-                        <li><i class="fa-solid fa-circle"></i> João Henrique Moura Alves</li>
-                        <li><i class="fa-solid fa-circle"></i> Matheus Balam Alves</li>
-                        <li><i class="fa-solid fa-circle"></i> Matheus Vicente Brito Maia</li>
-                        <li><i class="fa-solid fa-circle"></i> Pedro Israel Rondini</li>
-                    </ul>
-                </div>
-
-                <!-- Comercial -->
-                <div class="setor-card">
-                    <h3>Comercial</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Douglas Harvey</li>
-                        <li><i class="fa-solid fa-circle"></i> Ariany Vitória Rodrigues</li>
-                        <li><i class="fa-solid fa-circle"></i> Matheus Vicente Brito Maia</li>
-                        <li><i class="fa-solid fa-circle"></i> Rafaela Kupper</li>
-                        <li><i class="fa-solid fa-circle"></i> Maria Eduarda Oliveira da Luz</li>
-                        <li><i class="fa-solid fa-circle"></i> Murilo Bretzel</li>
-                    </ul>
-                </div>
-
-                <!-- Projetos -->
-                <div class="setor-card">
-                    <h3>Projetos</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Damelly Vitória Barreto Pereira</li>
-                        <li><i class="fa-solid fa-circle"></i> Eduarda Schumtzler</li>
-                        <li>
-                            <span style="display: inline-flex; align-items: center; gap: 8px;">
-                                <img src="isadora.jpg" alt="Isadora" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
-                                Isadora dos Santos Rigo
-                            </span>
-                        </li>
-                        <li><i class="fa-solid fa-circle"></i> João Vitor</li>
-                        <li><i class="fa-solid fa-circle"></i> Livia Maraí Kinchski Marques</li>
-                        <li><i class="fa-solid fa-circle"></i> João Henrique Moura Alves</li>
-                        <li><i class="fa-solid fa-circle"></i> Matheus Balam Alves</li>
-                        <li><i class="fa-solid fa-circle"></i> Luiz Fernando Bruschetta</li>
-                    </ul>
-                </div>
-
-                <!-- Administrativo -->
-                <div class="setor-card">
-                    <h3>Administrativo</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Ana Carolina Silva</li>
-                        <li><i class="fa-solid fa-circle"></i> Gabriela Infante Herminio</li>
-                        <li><i class="fa-solid fa-circle"></i> Gabriel Vetrone Jorge</li>
-                        <li><i class="fa-solid fa-circle"></i> Heloisa Marcondes</li>
-                        <li><i class="fa-solid fa-circle"></i> Heloisa Antonyelle Oliveira</li>
-                    </ul>
-                </div>
-
-                <!-- Marketing -->
-                <div class="setor-card">
-                    <h3>Marketing</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Ana Clara Pierucci</li>
-                        <li><i class="fa-solid fa-circle"></i> Rodrigo Padilha Montanheiro</li>
-                        <li><i class="fa-solid fa-circle"></i> Caroline Moreira Pires</li>
-                        <li><i class="fa-solid fa-circle"></i> Brayan Gazetta</li>
-                        <li><i class="fa-solid fa-circle"></i> Poliana Santos</li>
-                    </ul>
-                </div>
-
-                <!-- GP -->
-                <div class="setor-card">
-                    <h3>GP</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Valquiria Klaumann Bescorvaine</li>
-                        <li><i class="fa-solid fa-circle"></i> Jhonatan Kauan Santiago</li>
-                        <li><i class="fa-solid fa-circle"></i> Kauã Camargo</li>
-                        <li><i class="fa-solid fa-circle"></i> Poliana Santos</li>
-                    </ul>
-                </div>
-
-                <!-- Presidência -->
-                <div class="setor-card">
-                    <h3>Presidência</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-circle"></i> Heloisa Antonyelle Oliveira</li>
-                        <li><i class="fa-solid fa-circle"></i> Raul Calegare Hernandes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- ABA: FATURAMENTO -->
-        <div id="tab-faturamento" class="tab-content">
-            <header>
-                <h1>Relatório de Faturamento</h1>
-                <p>Indicadores financeiros, metas e receita consolidada</p>
-            </header>
-
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <span>Faturamento Total</span>
-                    <div class="kpi-value">R$ 74,83 Mil</div>
-                </div>
-                <div class="kpi-card">
-                    <span>Ticket Médio</span>
-                    <div class="kpi-value">R$ 12,47 Mil</div>
-                </div>
-            </div>
-
-            <div class="card-box">
-                <h3>Faturamento por Cliente</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Total Acumulado</th>
-                            <th>Participação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ambev</td>
-                            <td>R$ 36.426,38</td>
-                            <td>48.6%</td>
-                        </tr>
-                        <tr>
-                            <td>Mars</td>
-                            <td>R$ 31.829,00</td>
-                            <td>42.5%</td>
-                        </tr>
-                        <tr>
-                            <td>Bartmayer</td>
-                            <td>R$ 12.000,00</td>
-                            <td>16.0%</td>
-                        </tr>
-                        <tr>
-                            <td>Refribar</td>
-                            <td>R$ 12.000,00</td>
-                            <td>16.0%</td>
-                        </tr>
-                        <tr>
-                            <td>Prado Marcenaria</td>
-                            <td>R$ 6.174,00</td>
-                            <td>8.2%</td>
-                        </tr>
-                        <tr>
-                            <td>Elecar</td>
-                            <td>R$ 4.580,00</td>
-                            <td>6.1%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-
-    <!-- Script Robusto de Navegação por Botões -->
+    <!-- Script de Controlo -->
     <script>
+        function fazerLogin() {
+            var setorEscolhido = document.getElementById('select-setor').value;
+            var senhaDigitada = document.getElementById('input-senha').value;
+
+            if (senhaDigitada !== "solumax2026" && senhaDigitada !== "") {
+                alert("Senha incorreta!");
+                return;
+            }
+
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard-app').style.display = 'flex';
+
+            var nomeSetorTexto = document.getElementById('select-setor').options[document.getElementById('select-setor').selectedIndex].text;
+            document.getElementById('display-setor').innerText = nomeSetorTexto;
+
+            configurarPermissoesSetor(setorEscolhido);
+        }
+
+        function fazerLogout() {
+            document.getElementById('dashboard-app').style.display = 'none';
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('input-senha').value = '';
+        }
+
+        function configurarPermissoesSetor(setor) {
+            var btnVisao = document.getElementById('btn-visao');
+            var btnProjetos = document.getElementById('btn-projetos');
+            var btnMembros = document.getElementById('btn-membros');
+            var btnFaturamento = document.getElementById('btn-faturamento');
+            var btnCalendario = document.getElementById('btn-calendario');
+
+            // Visão Geral e Calendário ficam sempre visíveis para todos
+            btnVisao.style.display = 'flex';
+            btnCalendario.style.display = 'flex';
+
+            if (setor === 'projetos') {
+                btnProjetos.style.display = 'flex';
+                btnMembros.style.display = 'none';
+                btnFaturamento.style.display = 'none';
+            } else if (setor === 'comercial') {
+                btnProjetos.style.display = 'flex';
+                btnMembros.style.display = 'none';
+                btnFaturamento.style.display = 'none';
+            } else if (setor === 'faturamento') {
+                btnProjetos.style.display = 'none';
+                btnMembros.style.display = 'none';
+                btnFaturamento.style.display = 'flex';
+            } else if (setor === 'membros') {
+                btnProjetos.style.display = 'none';
+                btnMembros.style.display = 'flex';
+                btnFaturamento.style.display = 'none';
+            } else if (setor === 'calendario') {
+                btnProjetos.style.display = 'none';
+                btnMembros.style.display = 'none';
+                btnFaturamento.style.display = 'none';
+                abrirAba('calendario');
+                return;
+            } else {
+                // Diretoria / Geral vê tudo
+                btnProjetos.style.display = 'flex';
+                btnMembros.style.display = 'flex';
+                btnFaturamento.style.display = 'flex';
+            }
+
+            abrirAba('visao');
+        }
+
         function abrirAba(nomeAba) {
-            // Esconde todas as abas
             var abas = document.querySelectorAll('.tab-content');
             abas.forEach(function(aba) {
                 aba.classList.remove('active');
             });
 
-            // Remove a classe active de todos os botões do menu
             var botoes = document.querySelectorAll('.menu-btn');
             botoes.forEach(function(botao) {
                 botao.classList.remove('active');
             });
 
-            // Mostra a aba selecionada
             var abaSelecionada = document.getElementById('tab-' + nomeAba);
             if (abaSelecionada) {
                 abaSelecionada.classList.add('active');
             }
 
-            // Ativa o botão correspondente no menu
             var botaoSelecionado = document.getElementById('btn-' + nomeAba);
             if (botaoSelecionado) {
                 botaoSelecionado.classList.add('active');
