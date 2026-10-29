@@ -262,6 +262,69 @@
             gap: 8px;
         }
 
+        /* Estilos para os Cartões de Soluções/Faturamento */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .solution-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .solution-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .solution-header h4 {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .solution-header span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.05);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .solution-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .metric-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .metric-box small {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            margin-bottom: 2px;
+        }
+
+        .metric-box span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
         header {
             margin-bottom: 28px;
         }
@@ -371,7 +434,7 @@
                 </div>
             </div>
 
-            <!-- ABA: PROJETOS (9 PROJETOS DA PLANILHA OFICIAL) -->
+            <!-- ABA: PROJETOS -->
             <div id="tab-projetos" class="tab-content">
                 <header>
                     <h1>Gestão de Projetos</h1>
@@ -586,11 +649,11 @@
                 </div>
             </div>
 
-            <!-- ABA: FATURAMENTO -->
+            <!-- ABA: FATURAMENTO (COM OS CARTÕES DE SOLUÇÕES/SERVIÇOS) -->
             <div id="tab-faturamento" class="tab-content">
                 <header>
-                    <h1>Relatório de Faturamento</h1>
-                    <p>Indicadores financeiros e receita consolidada dos contratos</p>
+                    <h1>Relatório de Faturamento por Solução</h1>
+                    <p>Desempenho financeiro, ticket médio e CSAT por linha de serviço</p>
                 </header>
 
                 <div class="kpi-grid">
@@ -599,14 +662,123 @@
                         <div class="kpi-value">R$ 74,83 Mil</div>
                     </div>
                     <div class="kpi-card">
-                        <span>Ticket Médio</span>
+                        <span>Ticket Médio Geral</span>
                         <div class="kpi-value">R$ 12,47 Mil</div>
                     </div>
                 </div>
 
-                <div class="card-box">
-                    <h3>Análise de Receita</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Composição detalhada dos contratos fechados e em carteira da Solumax Consultoria.</p>
+                <div class="solutions-grid">
+                    <!-- Cartão 1 -->
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <div>
+                                <h4>Mapeamento de Processos e Simulação</h4>
+                                <span style="color: var(--text-secondary); font-size: 0.8rem;">Serviço</span>
+                            </div>
+                        </div>
+                        <div class="solution-metrics">
+                            <div class="metric-box">
+                                <small>Clientes</small>
+                                <span>2</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Faturamento</small>
+                                <span>R$ 52.395,34</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Ticket Médio</small>
+                                <span>R$ 17.465,11</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>CSAT</small>
+                                <span>5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cartão 2 -->
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <div>
+                                <h4>Gestão de Processos e Segurança do Trabalho</h4>
+                                <span style="color: var(--text-secondary); font-size: 0.8rem;">Serviço</span>
+                            </div>
+                        </div>
+                        <div class="solution-metrics">
+                            <div class="metric-box">
+                                <small>Clientes</small>
+                                <span>2</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Faturamento</small>
+                                <span>R$ 16.260,04</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Ticket Médio</small>
+                                <span>R$ 8.130,02</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>CSAT</small>
+                                <span>5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cartão 3 -->
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <div>
+                                <h4>Planilha de Gestão Financeira</h4>
+                                <span style="color: var(--text-secondary); font-size: 0.8rem;">Produto</span>
+                            </div>
+                        </div>
+                        <div class="solution-metrics">
+                            <div class="metric-box">
+                                <small>Clientes</small>
+                                <span>1</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Faturamento</small>
+                                <span>R$ 6.174,00</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Ticket Médio</small>
+                                <span>R$ 6.174,00</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>CSAT</small>
+                                <span>3%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cartão 4 -->
+                    <div class="solution-card">
+                        <div class="solution-header">
+                            <div>
+                                <h4>Estratégia e Negócio</h4>
+                                <span style="color: var(--text-secondary); font-size: 0.8rem;">Serviço</span>
+                            </div>
+                        </div>
+                        <div class="solution-metrics">
+                            <div class="metric-box">
+                                <small>Clientes</small>
+                                <span>1</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Faturamento</small>
+                                <span>R$ 300,00</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>Ticket Médio</small>
+                                <span>R$ 300,00</span>
+                            </div>
+                            <div class="metric-box">
+                                <small>CSAT</small>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
